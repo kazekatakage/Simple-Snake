@@ -18,6 +18,9 @@ import javax.swing.Timer;
  * A simple, classic Snake game implemented in a single Java file using Java Swing.
  * The game features a main menu start screen, real-time grid-based movement,
  * fruit spawning, collision detection, and a game-over screen with restart functionality.
+ * Supports both Arrow keys and WASD keys for alternative player control layouts.
+ * * @author AI Assistant
+ * @version 1.4
  */
 public class SimpleSnakeGame extends JPanel implements ActionListener {
 
@@ -142,7 +145,7 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, 18));
         FontMetrics instructMetrics = getFontMetrics(g.getFont());
-        g.drawString("Use Arrow Keys to Navigate", (BOARD_WIDTH - instructMetrics.stringWidth("Use Arrow Keys to Navigate")) / 2, BOARD_HEIGHT / 2);
+        g.drawString("Use Arrow Keys or WASD to Navigate", (BOARD_WIDTH - instructMetrics.stringWidth("Use Arrow Keys or WASD to Navigate")) / 2, BOARD_HEIGHT / 2);
 
         // Action Text
         g.setColor(Color.ORANGE);
@@ -241,7 +244,7 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
 
     /**
      * An inner key adapter tracking user keystrokes to execute game navigation,
-     * start commands, or game state restarts.
+     * start commands, or game state restarts. Maps both Arrow and WASD schemes.
      */
     private class MyKeyAdapter extends KeyAdapter {
         
@@ -263,10 +266,18 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
             // Handle gameplay controls
             if (running) {
                 switch (keyCode) {
-                    case KeyEvent.VK_LEFT -> { if (direction != 'R') direction = 'L'; }
-                    case KeyEvent.VK_RIGHT -> { if (direction != 'L') direction = 'R'; }
-                    case KeyEvent.VK_UP -> { if (direction != 'D') direction = 'U'; }
-                    case KeyEvent.VK_DOWN -> { if (direction != 'U') direction = 'D'; }
+                    case KeyEvent.VK_LEFT, KeyEvent.VK_A -> { 
+                        if (direction != 'R') direction = 'L'; 
+                    }
+                    case KeyEvent.VK_RIGHT, KeyEvent.VK_D -> { 
+                        if (direction != 'L') direction = 'R'; 
+                    }
+                    case KeyEvent.VK_UP, KeyEvent.VK_W -> { 
+                        if (direction != 'D') direction = 'U'; 
+                    }
+                    case KeyEvent.VK_DOWN, KeyEvent.VK_S -> { 
+                        if (direction != 'U') direction = 'D'; 
+                    }
                 }
             } else {
                 // Handle restart if game is over
