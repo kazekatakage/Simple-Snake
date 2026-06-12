@@ -32,6 +32,18 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
         startGame();
     }
 
+    /**
+     * This method spawns an apple for the snake to eat.
+     */
+    public void spawnApple() {
+        int x = random.nextInt((int) (BOARD_WIDTH / GRID_SIZE)) * GRID_SIZE;
+        int y = random.nextInt((int) (BOARD_HEIGHT / GRID_SIZE)) * GRID_SIZE;
+        apple = new Point(x, y);
+    }
+    
+    /**
+     * This method starts the game.
+     */
     public void startGame() {
         snake.clear();
         // Start with a snake of length 3 in the middle of the screen
@@ -50,18 +62,10 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
         timer.start();
     }
 
-    public void spawnApple() {
-        int x = random.nextInt((int) (BOARD_WIDTH / GRID_SIZE)) * GRID_SIZE;
-        int y = random.nextInt((int) (BOARD_HEIGHT / GRID_SIZE)) * GRID_SIZE;
-        apple = new Point(x, y);
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        draw(g);
-    }
-
+    /**
+     * This method creates the graphics seen on screen.
+     * @param g
+     */
     public void draw(Graphics g) {
         if (running) {
             // Draw Apple
@@ -88,6 +92,15 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
         }
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        draw(g);
+    }
+
+    /**
+     * This method creates the movement of the snake.
+     */
     public void move() {
         // Create a new head position based on current direction
         Point head = snake.get(0);
@@ -112,6 +125,10 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * This method checks to see if the snake collided with the edge of the screen, or itself.
+     * If collision is detected, the game ends.
+     */
     public void checkCollisions() {
         Point head = snake.get(0);
 
@@ -133,6 +150,10 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * This method creates the "Game Over" screen.
+     * @param g
+     */
     public void gameOver(Graphics g) {
         // Game Over text
         g.setColor(Color.RED);
@@ -152,6 +173,9 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
         g.drawString("Press SPACE to Restart", (BOARD_WIDTH - metrics3.stringWidth("Press SPACE to Restart")) / 2, BOARD_HEIGHT / 2 + 100);
     }
 
+    /**
+     * This method checks for movement and collisions.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (running) {
