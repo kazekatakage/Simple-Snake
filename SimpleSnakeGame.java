@@ -143,10 +143,16 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
 
         // Story
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.PLAIN, 18));
+        g.setFont(new Font("Arial", Font.PLAIN, 14));
         FontMetrics storyMetrics = getFontMetrics(g.getFont());
         g.drawString("You're a snake, and you must eat apples to grow big and strong.", (BOARD_WIDTH - storyMetrics.stringWidth("You're a snake, and you must eat apples to grow big and strong.")) / 2, BOARD_HEIGHT / 3);
 
+        // Story
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.PLAIN, 14));
+        FontMetrics storyMetrics2 = getFontMetrics(g.getFont());
+        g.drawString("Be careful not to eat your own tail, or touch the sides of the window!", (BOARD_WIDTH - storyMetrics2.stringWidth("Be careful not to eat your own tail, or touch the sides of the window!")) / 2, BOARD_HEIGHT / 3 + 20);
+        
         // Subtitle / Instructions
         g.setColor(Color.RED);
         g.setFont(new Font("Arial", Font.PLAIN, 18));
