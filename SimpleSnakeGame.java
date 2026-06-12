@@ -139,13 +139,19 @@ public class SimpleSnakeGame extends JPanel implements ActionListener {
         g.setColor(Color.GREEN);
         g.setFont(new Font("Arial", Font.BOLD, 60));
         FontMetrics titleMetrics = getFontMetrics(g.getFont());
-        g.drawString("SNAKE GAME", (BOARD_WIDTH - titleMetrics.stringWidth("SNAKE GAME")) / 2, BOARD_HEIGHT / 3);
+        g.drawString("SNAKE GAME", (BOARD_WIDTH - titleMetrics.stringWidth("SNAKE GAME")) / 2, BOARD_HEIGHT / 5);
 
-        // Subtitle / Instructions
+        // Story
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, 18));
+        FontMetrics storyMetrics = getFontMetrics(g.getFont());
+        g.drawString("You're a snake, and you must eat apples to grow big and strong.", (BOARD_WIDTH - storyMetrics.stringWidth("You're a snake, and you must eat apples to grow big and strong.")) / 2, BOARD_HEIGHT / 3);
+
+        // Subtitle / Instructions
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial", Font.PLAIN, 18));
         FontMetrics instructMetrics = getFontMetrics(g.getFont());
-        g.drawString("Use Arrow Keys or WASD to Navigate", (BOARD_WIDTH - instructMetrics.stringWidth("Use Arrow Keys or WASD to Navigate")) / 2, BOARD_HEIGHT / 2);
+        g.drawString("Use Arrow Keys or WASD to move the snake.", (BOARD_WIDTH - instructMetrics.stringWidth("Use Arrow Keys or WASD to move the snake.")) / 2, BOARD_HEIGHT / 2);
 
         // Action Text
         g.setColor(Color.ORANGE);
